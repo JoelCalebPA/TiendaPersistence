@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +25,10 @@ public class Producto implements Serializable {
 	private double precio;
 	private int stock;
 	
-	public Producto() { }
+	public Producto() { 
+		this.id_categoria = new Categoria();
+		this.id_marca = new Marca();
+	}
 	public Producto(int id_producto, String descripcion, Categoria id_categoria, Marca id_marca, double precio, int stock) {
 		super();
 		this.id_producto = id_producto;
@@ -45,10 +49,12 @@ public class Producto implements Serializable {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	@ManyToOne
 	@JoinColumn(name = "id_categoria", foreignKey = @ForeignKey(name = "fk_pro_categ"))
 	public Categoria getId_categoria() {
 		return id_categoria;
 	}
+	@ManyToOne
 	@JoinColumn(name = "id_marca", foreignKey = @ForeignKey(name = "fk_pro_marca"))
 	public Marca getId_marca() {
 		return id_marca;
