@@ -22,7 +22,7 @@ public class HibernateUtil {
 		}
 	}
 	
-	public SessionFactory getSessionFactory() {
+	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			sessionFactory = crearSessionFactory();
 		}

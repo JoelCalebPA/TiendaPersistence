@@ -19,7 +19,11 @@ public class Marca implements Serializable{
 	private String descripcion;
 	
 	public Marca() { }
+	public Marca(int id_marca) {
+		this.id_marca = id_marca;
+	}
 	public Marca(int id_marca, String descripcion) {
+		super();
 		this.id_marca = id_marca;
 		this.descripcion = descripcion;
 	}

@@ -9,5 +9,11 @@
         <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=db_tienda;integratedSecurity=true;</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.show_sql">true</property>
+        
+        <mapping class="com.caleb.entity.Producto"/>
+        <mapping class="com.caleb.entity.Categoria"/>
+        <mapping class="com.caleb.entity.Marca"/>
     </session-factory>
 </hibernate-configuration>
