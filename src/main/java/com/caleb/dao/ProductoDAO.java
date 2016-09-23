@@ -6,7 +6,7 @@ import com.caleb.entity.Categoria;
 import com.caleb.entity.Marca;
 import com.caleb.entity.Producto;
 
-interface ProductoDAO {
+public interface ProductoDAO {
 
 	void crearProducto(Producto producto);
 	void actualizarProducto(Producto producto);

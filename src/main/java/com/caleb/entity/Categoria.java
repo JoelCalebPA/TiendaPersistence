@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -30,7 +29,7 @@ public class Categoria implements Serializable{
 	
 	@Id
 	@Column(name = "id_categoria", nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	public int getId_categoria() {
 		return id_categoria;
 	}
