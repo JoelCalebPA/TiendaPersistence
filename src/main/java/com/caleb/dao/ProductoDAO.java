@@ -11,7 +11,7 @@ interface ProductoDAO {
 	void crearProducto(Producto producto);
 	void actualizarProducto(Producto producto);
 	void eliminarProducto(int id_producto);
-	Producto buscarProducto(Producto producto);
+	Producto buscarProducto(int id_producto);
 	List<Producto> listarProductos();
 	List<Producto> listarProductos(Categoria categoria);
 	List<Producto> listarProductos(Marca marca);

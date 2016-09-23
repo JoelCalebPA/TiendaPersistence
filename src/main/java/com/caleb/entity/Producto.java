@@ -20,21 +20,21 @@ public class Producto implements Serializable {
 
 	private int id_producto;
 	private String descripcion;
-	private Categoria id_categoria;
-	private Marca id_marca;
+	private Categoria categoria;
+	private Marca marca;
 	private double precio;
 	private int stock;
 	
 	public Producto() { 
-		this.id_categoria = new Categoria();
-		this.id_marca = new Marca();
+		this.categoria = new Categoria();
+		this.marca = new Marca();
 	}
-	public Producto(int id_producto, String descripcion, Categoria id_categoria, Marca id_marca, double precio, int stock) {
+	public Producto(int id_producto, String descripcion, Categoria categoria, Marca marca, double precio, int stock) {
 		super();
 		this.id_producto = id_producto;
 		this.descripcion = descripcion;
-		this.id_categoria = id_categoria;
-		this.id_marca = id_marca;
+		this.categoria = categoria;
+		this.marca = marca;
 		this.precio = precio;
 		this.stock = stock;
 	}
@@ -51,13 +51,13 @@ public class Producto implements Serializable {
 	}
 	@ManyToOne
 	@JoinColumn(name = "id_categoria", foreignKey = @ForeignKey(name = "fk_pro_categ"))
-	public Categoria getId_categoria() {
-		return id_categoria;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 	@ManyToOne
 	@JoinColumn(name = "id_marca", foreignKey = @ForeignKey(name = "fk_pro_marca"))
-	public Marca getId_marca() {
-		return id_marca;
+	public Marca getMarca() {
+		return marca;
 	}
 	@Column(name = "precio", nullable = false)
 	public double getPrecio() {
@@ -73,11 +73,11 @@ public class Producto implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public void setId_categoria(Categoria id_categoria) {
-		this.id_categoria = id_categoria;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
-	public void setId_marca(Marca id_marca) {
-		this.id_marca = id_marca;
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 	public void setPrecio(double precio) {
 		this.precio = precio;

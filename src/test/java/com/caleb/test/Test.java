@@ -9,12 +9,10 @@ public class Test {
 		
 		ProductoDAOImpl dao = new ProductoDAOImpl();
 		Producto producto = new Producto();
-		producto.setId_producto(54);
-		producto.setDescripcion("Teclado Genius color rojo");
-		producto = dao.buscarProducto(producto);
-		ProductoDAOImpl dao2 = new ProductoDAOImpl();
-		dao2.actualizarProducto(producto);
+		producto.setId_producto(50);
+		producto = dao.buscarProducto(producto.getId_producto());
 		System.out.println(producto.getDescripcion().toString());
+		
 	}
 
 }

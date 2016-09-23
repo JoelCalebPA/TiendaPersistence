@@ -2,9 +2,6 @@ package com.caleb.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.StoredProcedureQuery;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -62,12 +59,13 @@ public class ProductoDAOImpl implements ProductoDAO {
 	}
 
 	@Override
-	public Producto buscarProducto(Producto producto) {
+	public Producto buscarProducto(int id_producto) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
+		Producto producto = new Producto();
 		try {
 			session.beginTransaction();
-			producto = session.find(Producto.class, producto.getId_producto());
+			producto = session.load(Producto.class, id_producto);
 			session.getTransaction().commit();
 			return producto;
 		} catch (Exception e) {

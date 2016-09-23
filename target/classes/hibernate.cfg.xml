@@ -4,12 +4,16 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">toeasyforjoel</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=db_tienda;integratedSecurity=true;</property>
+        <property name="hibernate.connection.url">jdbc:ysql:://localhost:1433/</property>
         <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
+        <property name="connection.pool_size">1</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="cache.use_second_level_cache">false</property>
         
         <mapping class="com.caleb.entity.Producto"/>
         <mapping class="com.caleb.entity.Categoria"/>
