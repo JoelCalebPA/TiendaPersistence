@@ -24,7 +24,7 @@ public class Venta {
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", foreignKey = @ForeignKey(name = "fk_venta_cliente"))
 	private Cliente cliente;
-	@Temporal(value = TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.DATE)
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
 	@Column(name = "pago_total", nullable = false)

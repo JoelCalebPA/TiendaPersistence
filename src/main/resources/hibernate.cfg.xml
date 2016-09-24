@@ -9,9 +9,9 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_tienda</property>
         <property name="hibernate.connection.username">joel</property>
         
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="connection.pool_size">1</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL57InnoDBDialect</property>
+        <property name="hibernate.show_sql">false</property>
         
         <mapping class="com.caleb.entity.Producto"/>
         <mapping class="com.caleb.entity.Categoria"/>
