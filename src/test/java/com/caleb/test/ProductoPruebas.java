@@ -37,8 +37,8 @@ public class ProductoPruebas {
 	
 	@Test
 	public void eliminarProducto() {
-		dao.eliminarProducto(55);
-		System.out.println("Producto Eliminado : 56");
+		dao.eliminarProducto(50);
+		System.out.println("Producto Eliminado : 50");
 	}
 	
 	@Test

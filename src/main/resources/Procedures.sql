@@ -1,5 +1,8 @@
 USE `db_tienda` ;
 
+-- -----------------------------------------------------
+-- Stored Procedures de Table Producto
+-- -----------------------------------------------------
 DROP PROCEDURE IF EXISTS spEliminarProducto;
 CREATE PROCEDURE spEliminarProducto(idProducto int)
 	update tbl_producto 
@@ -25,3 +28,18 @@ CREATE PROCEDURE spListarProductosPorMarca( idMarca int )
     from tbl_producto p inner join tbl_marca m 
     on p.id_marca = m.id_marca 
     where p.id_marca = idMarca and p.estado = 1;
+
+-- -----------------------------------------------------
+-- Stored Procedures de Table Producto
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS spEliminarCliente;
+CREATE PROCEDURE spEliminarCliente(idCliente int)
+	update tbl_cliente 
+    set estado = 0 
+    where id_cliente = idCliente;
+
+DROP PROCEDURE IF EXISTS spListarClientes;
+CREATE PROCEDURE spListarClientes()
+	select c.id_cliente, c.nombre, c.apellido, c.direccion, c.telefono
+    from tbl_cliente c 
+    where c.estado = 1;

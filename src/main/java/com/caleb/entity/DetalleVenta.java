@@ -1,5 +1,7 @@
 package com.caleb.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -10,8 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_detalle_venta")
-public class DetalleVenta {
+public class DetalleVenta implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_venta", foreignKey = @ForeignKey(name = "fk_deta_venta"))

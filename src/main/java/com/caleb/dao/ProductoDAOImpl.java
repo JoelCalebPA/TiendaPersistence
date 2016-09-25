@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import com.caleb.entity.Categoria;
 import com.caleb.entity.Marca;

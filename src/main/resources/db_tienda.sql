@@ -119,7 +119,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `db_tienda`.`tbl_usuario` (
   `id_cliente` INT(11) NOT NULL,
   `usuario` VARCHAR(30) NOT NULL,
-  `contraseña` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
   `estado` INT(11) NULL DEFAULT '1',
   UNIQUE INDEX `id_cliente_UNIQUE` (`id_cliente` ASC),
   PRIMARY KEY (`id_cliente`),

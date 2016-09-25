@@ -16,5 +16,6 @@
         <mapping class="com.caleb.entity.Producto"/>
         <mapping class="com.caleb.entity.Categoria"/>
         <mapping class="com.caleb.entity.Marca"/>
+        <mapping class="com.caleb.entity.Cliente"/>
     </session-factory>
 </hibernate-configuration>
