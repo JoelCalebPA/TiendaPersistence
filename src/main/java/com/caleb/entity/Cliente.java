@@ -1,12 +1,17 @@
 package com.caleb.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,35 +20,46 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@Column(name = "id_cliente", nullable = false, unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_cliente;
-	@Column(name = "nombre", nullable = false, length = 30)
 	private String nombre;
-	@Column(name = "apellido", nullable = false, length = 30)
 	private String apellido;
-	@Column(name = "direccion", nullable = false, length = 100)
 	private String direccion;
-	@Column(name = "telefono", nullable = false, length = 30)
 	private String telefono;
+	private Set<Venta> ventas = new HashSet<Venta>();
+	private Usuario usuario;
 	
 	public Cliente() { }
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente")
 	public int getId_cliente() {
 		return id_cliente;
 	}
+	@Column(name = "nombre")
 	public String getNombre() {
 		return nombre;
 	}
+	@Column(name = "apellido")
 	public String getApellido() {
 		return apellido;
 	}
+	@Column(name = "direccion")
 	public String getDireccion() {
 		return direccion;
 	}
+	@Column(name = "telefono")
 	public String getTelefono() {
 		return telefono;
+	}
+	@OneToMany(mappedBy = "cliente")
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+	@OneToOne(mappedBy = "primaryKey.cliente",
+            cascade = CascadeType.ALL)
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	public void setId_cliente(int id_cliente) {
 		this.id_cliente = id_cliente;
@@ -59,6 +75,12 @@ public class Cliente implements Serializable {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

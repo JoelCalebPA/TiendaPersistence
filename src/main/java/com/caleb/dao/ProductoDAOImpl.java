@@ -1,5 +1,6 @@
 package com.caleb.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -13,6 +14,8 @@ import com.caleb.util.HibernateUtil;
 
 public class ProductoDAOImpl implements ProductoDAO {
 		
+	private static List<Producto> productos;
+	
 	@Override
 	public void registrarProducto(Producto producto) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -86,12 +89,14 @@ public class ProductoDAOImpl implements ProductoDAO {
 	@Override
 	public List<Producto> listarProductos() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		productos = new ArrayList<Producto>();
 		try {
 			session.beginTransaction();
 			Query query = session.createSQLQuery(SP_LISTAR_PRODUCTOS)
 					.addEntity(Producto.class);
+			productos = query.getResultList();
 			session.getTransaction().commit();
-			return (List<Producto>)query.getResultList();
+			return productos;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			System.err.println("Error al crear actualizar: " + e);

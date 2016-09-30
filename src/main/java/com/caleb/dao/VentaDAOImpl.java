@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.caleb.entity.Cliente;
+import com.caleb.entity.DetalleVenta;
 import com.caleb.entity.Venta;
 import com.caleb.util.HibernateUtil;
 
@@ -15,7 +16,7 @@ public class VentaDAOImpl implements VentaDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			session.persist(venta);
+			session.save(venta);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			System.err.println("Error al Registrar Venta:" + e);
