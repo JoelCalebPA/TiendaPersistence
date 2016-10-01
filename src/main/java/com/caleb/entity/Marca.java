@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbl_marca")
@@ -44,6 +45,7 @@ public class Marca implements Serializable{
 	public String getDescripcion() {
 		return descripcion;
 	}
+	@Transient
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "marca")
 	public Set<Producto> getProductos() {
 		return productos;

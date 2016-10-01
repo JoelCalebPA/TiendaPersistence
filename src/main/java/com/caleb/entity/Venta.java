@@ -18,11 +18,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbl_venta")
 public class Venta implements Serializable {
-	
+		
 	private static final long serialVersionUID = 1L;
 	
 	private int id_venta;
@@ -53,6 +54,7 @@ public class Venta implements Serializable {
 	public double getPago_total() {
 		return pago_total;
 	}
+	@Transient
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryKey.venta",
             cascade = CascadeType.ALL)
 	public Set<DetalleVenta> getDetalleVenta() {

@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbl_producto")
@@ -60,6 +61,7 @@ public class Producto implements Serializable {
 	public int getStock() {
 		return stock;
 	}
+	@Transient
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryKey.producto",
             cascade = CascadeType.ALL)
 	public Set<DetalleVenta> getDetalleVenta() {

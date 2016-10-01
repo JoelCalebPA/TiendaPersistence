@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbl_cliente")
@@ -54,6 +55,7 @@ public class Cliente implements Serializable {
 	public String getTelefono() {
 		return telefono;
 	}
+	@Transient
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
 	public Set<Venta> getVentas() {
 		return ventas;

@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import com.caleb.dao.ClienteDAOImpl;
 import com.caleb.entity.Cliente;
-import com.caleb.entity.Usuario;
 
 public class ClientePruebas {
 
