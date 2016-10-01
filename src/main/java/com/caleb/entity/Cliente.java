@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +26,9 @@ public class Cliente implements Serializable {
 	private String apellido;
 	private String direccion;
 	private String telefono;
+	private String usuario;
+	private String password;
 	private Set<Venta> ventas = new HashSet<Venta>();
-	private Usuario usuario;
 	
 	public Cliente() { }
 
@@ -52,14 +54,17 @@ public class Cliente implements Serializable {
 	public String getTelefono() {
 		return telefono;
 	}
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
 	public Set<Venta> getVentas() {
 		return ventas;
 	}
-	@OneToOne(mappedBy = "primaryKey.cliente",
-            cascade = CascadeType.ALL)
-	public Usuario getUsuario() {
+	@Column(name = "usuario")
+	public String getUsuario() {
 		return usuario;
+	}
+	@Column(name = "password")
+	public String getPassword() {
+		return password;
 	}
 	public void setId_cliente(int id_cliente) {
 		this.id_cliente = id_cliente;
@@ -79,8 +84,11 @@ public class Cliente implements Serializable {
 	public void setVentas(Set<Venta> ventas) {
 		this.ventas = ventas;
 	}
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }

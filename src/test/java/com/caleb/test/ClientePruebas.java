@@ -10,21 +10,17 @@ public class ClientePruebas {
 
 	private ClienteDAOImpl dao = new ClienteDAOImpl();
 	private Cliente cliente;
-	private Usuario usuario;
 	
 	@Test
 	public void registrarCliente() {
 		cliente = new Cliente();
-		usuario = new Usuario();
-		usuario.setUsuario("JoelC");
-		usuario.setPassword("mipassword");
-		cliente.setNombre("Caleb Joel");
-		cliente.setApellido("Arias Paytan");
-		cliente.setDireccion("Lurigancho - Chosica");
-		cliente.setTelefono("+51 945746400");
-		cliente.setUsuario(usuario);
+		cliente.setUsuario("usuario");
+		cliente.setPassword("password");
+		cliente.setNombre("Caleb Joel9");
+		cliente.setApellido("Arias Paytan9");
+		cliente.setDireccion("Lurigancho - Chosica9");
+		cliente.setTelefono("+51 9457464009");
 		dao.registrarCliente(cliente);
-		System.out.println("Registro exitoso");
 	}
 //	
 //	@Test

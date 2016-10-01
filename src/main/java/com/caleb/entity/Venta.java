@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Venta implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id_venta;
-	private Cliente cliente = new Cliente();
+	private Cliente cliente;
 	private Date fecha;
 	private double pago_total;
     private Set<DetalleVenta> detalleVenta = new HashSet<DetalleVenta>();
@@ -52,7 +53,7 @@ public class Venta implements Serializable {
 	public double getPago_total() {
 		return pago_total;
 	}
-	@OneToMany(mappedBy = "primaryKey.venta",
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryKey.venta",
             cascade = CascadeType.ALL)
 	public Set<DetalleVenta> getDetalleVenta() {
 		return detalleVenta;

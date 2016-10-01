@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +24,8 @@ public class Producto implements Serializable {
 	
 	private int id_producto;
 	private String descripcion;
-	private Categoria categoria;
-	private Marca marca;
+	private Categoria categoria = new Categoria();
+	private Marca marca = new Marca();
 	private double precio;
 	private int stock;
 	private Set<DetalleVenta> detalleVenta = new HashSet<DetalleVenta>();
@@ -59,7 +60,7 @@ public class Producto implements Serializable {
 	public int getStock() {
 		return stock;
 	}
-	@OneToMany(mappedBy = "primaryKey.producto",
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryKey.producto",
             cascade = CascadeType.ALL)
 	public Set<DetalleVenta> getDetalleVenta() {
 		return detalleVenta;

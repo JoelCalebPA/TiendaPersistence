@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.caleb.entity.Categoria;
 import com.caleb.entity.Marca;
@@ -19,12 +20,13 @@ public class ProductoDAOImpl implements ProductoDAO {
 	@Override
 	public void registrarProducto(Producto producto) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			session.persist(producto);
-			session.getTransaction().commit();
+			tx.commit();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear producto: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {
@@ -71,13 +73,14 @@ public class ProductoDAOImpl implements ProductoDAO {
 	public Producto buscarProducto(int id_producto) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Producto producto = new Producto();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			producto = (Producto)session.find(Producto.class, id_producto);
-			session.getTransaction().commit();
+			tx.commit();
 			return producto;
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear actualizar: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {
@@ -90,15 +93,16 @@ public class ProductoDAOImpl implements ProductoDAO {
 	public List<Producto> listarProductos() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		productos = new ArrayList<Producto>();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			Query query = session.createSQLQuery(SP_LISTAR_PRODUCTOS)
 					.addEntity(Producto.class);
 			productos = query.getResultList();
-			session.getTransaction().commit();
+			tx.commit();
 			return productos;
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear actualizar: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {
@@ -110,15 +114,16 @@ public class ProductoDAOImpl implements ProductoDAO {
 	@Override
 	public List<Producto> listarProductos(Categoria categoria) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			Query query = session.createSQLQuery(SP_LISTAR_PRODUCTOS_X_CATEGORIA)
 					.addEntity(Producto.class)
 					.setParameter("id", categoria.getId_categoria());
-			session.getTransaction().commit();
+			tx.commit();
 			return (List<Producto>)query.getResultList();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear actualizar: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {
@@ -130,15 +135,16 @@ public class ProductoDAOImpl implements ProductoDAO {
 	@Override
 	public List<Producto> listarProductos(Marca marca) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			Query query = session.createSQLQuery(SP_LISTAR_PRODUCTOS_X_MARCA)
 					.addEntity(Producto.class)
 					.setParameter("id", marca.getId_marca());
-			session.getTransaction().commit();
+			tx.commit();
 			return (List<Producto>)query.getResultList();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear actualizar: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {

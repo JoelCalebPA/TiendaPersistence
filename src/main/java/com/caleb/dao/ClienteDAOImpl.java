@@ -16,7 +16,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			session.persist(cliente);
+			session.save(cliente);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			System.err.println("Error al Registrar Cliente:" + e);

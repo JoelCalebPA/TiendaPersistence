@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.caleb.entity.Cliente;
-import com.caleb.entity.DetalleVenta;
 import com.caleb.entity.Venta;
 import com.caleb.util.HibernateUtil;
 

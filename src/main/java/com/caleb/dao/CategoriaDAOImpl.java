@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.caleb.entity.Categoria;
 import com.caleb.util.HibernateUtil;
@@ -39,14 +40,15 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	@Override
 	public List<Categoria> listarCategoria() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
 		try {
-			session.beginTransaction();
+			tx = session.beginTransaction();
 			Query query = session.createSQLQuery(SP_LISTAR_CATEGORIA)
 					.addEntity(Categoria.class);
-			session.getTransaction().commit();
+			tx.commit();
 			return (List<Categoria>)query.getResultList();
 		} catch (Exception e) {
-			session.getTransaction().rollback();
+			tx.rollback();
 			System.err.println("Error al crear actualizar: " + e);
 			throw new ExceptionInInitializerError(e);
 		} finally {

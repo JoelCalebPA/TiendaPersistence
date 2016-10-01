@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -28,6 +29,8 @@ public class Usuario implements Serializable {
 		return primaryKey;
 	}
 	@Transient
+	@OneToOne
+	@JoinColumn(name = "id_cliente")
 	public Cliente getCliente() {
 		return getPrimaryKey().getCliente();
 	}

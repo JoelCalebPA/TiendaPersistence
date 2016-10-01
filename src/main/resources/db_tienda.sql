@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS db_tienda;
+-- -----------------------------------------------------
+-- Schema db_tienda
+-- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `db_tienda` DEFAULT CHARACTER SET utf8 ;
 USE `db_tienda` ;
 
@@ -17,12 +21,15 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_tienda`.`tbl_cliente`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_tienda`.`tbl_cliente`;
 CREATE TABLE IF NOT EXISTS `db_tienda`.`tbl_cliente` (
   `id_cliente` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(30) NOT NULL,
   `apellido` VARCHAR(30) NOT NULL,
   `direccion` VARCHAR(100) NOT NULL,
   `telefono` VARCHAR(30) NULL DEFAULT NULL,
+  `usuario` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
   `estado` INT(11) NULL DEFAULT '1',
   PRIMARY KEY (`id_cliente`))
 ENGINE = InnoDB
@@ -90,6 +97,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_tienda`.`tbl_detalle_venta`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_tienda`.`tbl_detalle_venta`;
 CREATE TABLE IF NOT EXISTS `db_tienda`.`tbl_detalle_venta` (
   `id_venta` INT(11) NOT NULL,
   `id_producto` INT(11) NOT NULL,
@@ -109,25 +117,6 @@ CREATE TABLE IF NOT EXISTS `db_tienda`.`tbl_detalle_venta` (
     REFERENCES `db_tienda`.`tbl_venta` (`id_venta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `db_tienda`.`tbl_usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_tienda`.`tbl_usuario` (
-  `id_cliente` INT(11) NOT NULL,
-  `usuario` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
-  `estado` INT(11) NULL DEFAULT '1',
-  UNIQUE INDEX `id_cliente_UNIQUE` (`id_cliente` ASC),
-  PRIMARY KEY (`id_cliente`),
-  CONSTRAINT `fk_usr_cli`
-    FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_tienda`.`tbl_cliente` (`id_cliente`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

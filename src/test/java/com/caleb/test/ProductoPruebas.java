@@ -25,7 +25,7 @@ public class ProductoPruebas {
 	@Test
 	public void actualizarProducto() {
 		producto = new Producto();
-		producto.setId_producto(57);
+		producto.setId_producto(50);
 		producto.setDescripcion("Nuevo producto de prueba 2");
 		producto.getCategoria().setId_categoria(1);
 		producto.getMarca().setId_marca(1);
@@ -49,6 +49,9 @@ public class ProductoPruebas {
 	@Test
 	public void listarProductos() {
 		System.out.println("Producto Encontrados : " + dao.listarProductos().size());
+		for (Producto p : dao.listarProductos()) {
+			System.out.println(p.getDescripcion());
+		}
 	}
 	
 	@Test
